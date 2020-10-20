@@ -1,0 +1,14 @@
+.Sandbox {
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-light);
+    background-image: radial-gradient(circle, var(--color-border) 1%, transparent 10%), radial-gradient(circle, var(--color-border) 1%, transparent 10%);
+    background-size: 10px 10px;
+    background-position: 0 0, 0 0;
+}
+
+.Sandbox_content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
