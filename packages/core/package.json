@@ -1,0 +1,12 @@
+{
+  "name": "@instant-coffee/core",
+  "version": "1.0.0",
+  "description": "",
+  "repository": "https://github.com/Instant-coffee-design/atomic/tree/main/packages/core",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TheotimeColin",
+  "license": "ISC"
+}

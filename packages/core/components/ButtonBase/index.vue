@@ -5,7 +5,7 @@
                 <slot name="before"></slot>
             </span>
             <span class="ButtonBase_text">
-                Hello
+                {{ text }} {{ test.test }}
             </span>
             <span class="ButtonBase_after">
                 <slot name="before"></slot>
@@ -16,6 +16,10 @@
 
 <script>
 export default {
-    name: 'ButtonBase'
+    name: 'ButtonBase',
+    props: {
+        text: { type: String, default: 'Hello' },
+        test: { type: Object, default: () => ({ test: 'Yes' }) }
+    }
 }
 </script>
