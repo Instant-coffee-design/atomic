@@ -5,6 +5,11 @@
 
   @each $fontName, $font in $fonts {
     --#{$fontName}: #{map-get($font, name)};
+
+    @each $weightName, $weight in map-get($font, "weights") {
+        --#{$fontName}-#{$weightName}: #{$weight};
+    }
+    
     @each $size, $value in map-get($font, sizes) {
       --#{$fontName}-#{$size}: #{$value} var(--#{$fontName});
     }

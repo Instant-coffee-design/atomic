@@ -1,0 +1,31 @@
+.ButtonBase {
+    font: var(--ft-m);
+    font-weight: var(--ft-medium);
+    color: var(--color-ft-light);
+    background-color: var(--color-primary);
+    padding: 10px 10px;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+
+        .ButtonBase_content {
+            opacity: 0.75;
+        }
+    }
+
+    &:active {
+
+        .ButtonBase_content {
+            opacity: 0.25;
+        }
+    }
+}
+
+.ButtonBase_content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 250ms ease;
+    user-select: none;
+}

@@ -66,6 +66,12 @@
 
         @each $size, $value in map-get($font, sizes) {
             .#{$fontName}-#{$size}#{$name} { font: var(--#{$fontName}-#{$size}); }
+
+            @each $weightName, $weight in map-get($font, "weights") {
+                .#{$fontName}-#{$size}-#{$weightName}#{$name} {
+                    font: #{$weight} var(--#{$fontName}-#{$size});
+                }
+            }
         }
     }
 

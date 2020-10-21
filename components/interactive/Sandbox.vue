@@ -1,7 +1,7 @@
 <template>
     <div class="Sandbox">
         <div class="Sandbox_content">
-            Sandbox
+            <slot></slot>
         </div>
     </div>
 </template>
