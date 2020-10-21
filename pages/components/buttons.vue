@@ -11,9 +11,6 @@ import { ButtonBase } from '@/packages/core'
 export default {
     name: 'ComponentsButtons',
     components: { ButtonBase },
-    data: () => ({
-        test: ButtonBase
-    }),
     methods: {
         getProto (name) {
             return this.$options.__proto__.components[name]

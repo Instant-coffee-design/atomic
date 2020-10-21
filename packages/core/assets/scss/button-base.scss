@@ -19,6 +19,10 @@
             opacity: 0.25;
         }
     }
+
+    &:disabled {
+        pointer-events: none;
+    }
 }
 
 .ButtonBase_content {
@@ -27,4 +31,10 @@
     justify-content: center;
     transition: all 250ms ease;
     user-select: none;
+}
+
+/* MODIFIERS */
+
+.ButtonBase--s {
+    padding: 2px;
 }
