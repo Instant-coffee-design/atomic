@@ -1,5 +1,8 @@
+@import "@/packages/core/assets/scss/reset.scss";
 @import "./base/index.scss";
+@import "@/packages/core/assets/scss/mixins.scss";
+@import "@/packages/core/assets/scss/components.scss";
 @import "./components/index.scss";
 @import "./layout/index.scss";
 @import "./pages/index.scss";
-@import "./base/atomic.scss";
+@import "@/packages/core/assets/scss/atomic.scss";
