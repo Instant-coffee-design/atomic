@@ -1,6 +1,7 @@
 <template>
     <div>
-        <h1 class="Title Title--l">Boutons</h1>
+        <h1 class="Title Title--l mb-10">Boutons</h1>
+
         <sandbox :component="getProto('ButtonBase')" />
     </div>
 </template>

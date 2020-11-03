@@ -54,6 +54,9 @@ export default {
     computed: {
         modifiers () {
             return this.$props.component.schema ? this.$props.component.schema.modifiers : null
+        },
+        defaultValues () {
+            return this.$props.component.schema && this.$props.component.schema.default ? this.$props.component.schema.default : null
         }
     },
     watch: {
@@ -63,7 +66,11 @@ export default {
             handler (v) {
                 if (v) {
                     for (const [key, value] of Object.entries(v.props)) {
-                        if (value.default) this.$set(this.$data.currentProps, key, this.getPropValue(value))
+                        if (this.defaultValues && this.defaultValues[key]) {
+                            this.$set(this.$data.currentProps, key, this.defaultValues[key])
+                        } else if (value.default) {
+                            this.$set(this.$data.currentProps, key, this.getPropValue(value))
+                        }
                     }
                 }
             }

@@ -1,3 +1,6 @@
 export default {
-    modifiers: ['s', 'light']
+    modifiers: ['s', 'light'],
+    default: {
+        text: 'Order one expresso'
+    }
 }

@@ -1,0 +1,44 @@
+.LayoutDefault_body {
+    display: flex;
+    min-height: 100vh;
+}
+
+.LayoutDefault_nav {
+    width: 20%;
+    max-width: 400px;
+    min-height: 100%;
+    margin: 40px 0;
+    border-right: 1px solid var(--color-border);
+    display: flex;
+    justify-content: center;
+}
+
+.LayoutDefault_navContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.LayoutDefault_content {
+    flex-grow: 1;
+    padding: 0 8vw;
+}
+
+.LayoutDefault_navLogo {
+    width: 40px;
+    align-self: center;
+}
+
+.LayoutDefault_navItem {
+    display: block;
+    margin: 10px 0;
+
+    &.is-active {
+        font-weight: bold;
+    }
+}
+
+.LayoutDefault_navFooter {
+    font: var(--ft-s-medium);
+    align-self: center;
+}
