@@ -1,5 +1,10 @@
 .Title {
     color: var(--color-ft);
+    font: var(--ft-title-l-bold);
+}
+
+.Title--s {
+    font: var(--ft-title-s-bold);
 }
 
 .Title--l {

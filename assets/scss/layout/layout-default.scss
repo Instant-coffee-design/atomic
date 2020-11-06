@@ -5,12 +5,14 @@
 
 .LayoutDefault_nav {
     width: 20%;
-    max-width: 400px;
-    min-height: 100%;
+    max-width: 250px;
+    height: calc(100vh - 80px);
     margin: 40px 0;
     border-right: 1px solid var(--color-border);
     display: flex;
     justify-content: center;
+    position: sticky;
+    top: 40px;
 }
 
 .LayoutDefault_navContainer {
@@ -22,11 +24,12 @@
 .LayoutDefault_content {
     flex-grow: 1;
     padding: 0 8vw;
+    overflow: hidden;
 }
 
 .LayoutDefault_navLogo {
     width: 40px;
-    align-self: center;
+    // align-self: center;
 }
 
 .LayoutDefault_navItem {
@@ -40,5 +43,5 @@
 
 .LayoutDefault_navFooter {
     font: var(--ft-s-medium);
-    align-self: center;
+    // align-self: center;
 }

@@ -18,7 +18,7 @@ export default {
     props: {
         items: { type: Array, default: () => ([
             { label: 'instant.coffee', link: '/' },
-            { label: 'composants', link: '/components'}
+            { label: 'components', link: '/components'}
         ]) }
     },
     data: () => ({

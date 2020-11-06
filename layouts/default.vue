@@ -44,12 +44,12 @@ export default {
     data: () => ({
         assets: { logo },
         items: [
-            { id: 0, label: 'Boutons, liens', link: '/components/buttons' },
-            { id: 1, label: 'Popins, infobulles', link: '/components/' },
-            { id: 2, label: 'Formulaires, inputs', link: '/components/' },
-            { id: 3, label: 'Carousels, galeries', link: '/components/' },
-            { id: 4, label: 'Fonctionnels', link: '/components/' },
-            { id: 5, label: 'Images, icônes', link: '/components/' },
+            { id: 0, label: 'Buttons, links', link: '/components/buttons' },
+            { id: 1, label: 'Popins, tooltips', link: '/components/popins' },
+            { id: 2, label: 'Forms, inputs', link: '/components/forms' },
+            { id: 3, label: 'Sliders, galleries', link: '/components/sliders' },
+            { id: 4, label: 'Functionals', link: '/components/functionals' },
+            { id: 5, label: 'Images, icons', link: '/components/images' },
         ]
     })
 }

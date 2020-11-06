@@ -1,8 +1,19 @@
 <template>
-    <div class="Sandbox">
+    <div class="Sandbox" :class="{ 'is-active': state.isOpen }">
         <div class="Sandbox_content">
-            <component :is="component" :modifiers="currentModifiers" v-bind="currentProps" />
+            <component
+                :is="component"
+                :modifiers="currentModifiers"
+                :value="value"
+                v-bind="currentProps"
+                @input="(v) => $emit('input', v)"
+            />
+
+            <div class="Sandbox_toggle" @click="state.isOpen = !state.isOpen">
+                <i class="fal fa-cog"></i>
+            </div>
         </div>
+
         <div class="Sandbox_configurator" v-if="component">
             <div v-if="modifiers">
                 Modifiers
@@ -13,27 +24,16 @@
             </div>
 
             <div
-                class="d-flex"
                 v-for="(prop, propName) in component.props"
+                class="mv-10"
                 :key="propName"
             >
-                <p>{{ propName }}</p>
-                
-                <div>
-                    <template v-if="prop.type.name == 'Boolean'">
-                        <input
-                            type="checkbox"
-                            @input="(e) => onInput(e.target.checked, propName, prop)"
-                            :value="getStringValue(currentProps[propName])"
-                        >
-                    </template>
-                    <template v-else>
-                        <textarea
-                            @input="(e) => onInput(e.target.value, propName, prop)"
-                            :value="getStringValue(currentProps[propName])"
-                        ></textarea>
-                    </template>
-                </div>
+                <input-base
+                    :label="propName"
+                    :value="getStringValue(currentProps[propName])"
+                    v-bind="getInputType(getTypeArray(prop.type))"
+                    @input="(v) => onInput(v, propName, prop)"
+                />
             </div>
         </div>
     </div>
@@ -41,22 +41,32 @@
 
 <script>
 import Vue from 'vue'
+import { ButtonBase, InputBase } from '@/packages/core'
 
 export default {
     name: 'Sandbox',
+    components: { ButtonBase, InputBase },
     props: {
-        component: { type: Object, default: () => ({}) }
+        component: { type: Object, default: () => ({}) },
+        props: { type: Object, default: () => ({}) },
+        value: { type: [String, Number] }
     },
     data: () => ({
         currentProps: {},
-        currentModifiers: []
+        currentModifiers: [],
+        state: {
+            isOpen: false
+        }
     }),
     computed: {
         modifiers () {
             return this.$props.component.schema ? this.$props.component.schema.modifiers : null
         },
         defaultValues () {
-            return this.$props.component.schema && this.$props.component.schema.default ? this.$props.component.schema.default : null
+            return {
+                ...(this.$props.component.schema && this.$props.component.schema.default ? this.$props.component.schema.default : {}),
+                ...this.$props.props
+            }
         }
     },
     watch: {
@@ -84,18 +94,53 @@ export default {
             }
         },
         getPropValue (prop) {
-            switch (prop.type.name) {
-                case 'String': return prop.default
-                case 'Boolean': return prop.default
-                case 'Object': return prop.default()
-                default: return prop.default
+            let types = this.getTypeArray(prop.type)
+
+            if (types.includes('Boolean') || types.includes('String')) {
+                return prop.default
+            } 
+
+            if (types.includes('Object') || types.includes('Array')) {
+                return prop.default()
             }
+
+            return prop.default
+        },
+        getInputType (types) {
+            let props = {}
+
+            if (types.includes('Boolean')) {
+                props = { ...props, type: 'checkbox' };
+            } 
+
+            if (types.includes('Number')) {
+                props = { ...props, type: 'number', helpers: ['number'] };
+            }
+
+            if (types.includes('String')) {
+                props = { ...props, type: 'text' };
+            }
+
+            return props
+        },
+        getTypeArray (type) {
+            if (!Array.isArray(type)) type = [type]
+            type = type.map(t => t.name)
+
+            return type
         },
         onInput (value, propName, prop) {
-            try {
-                if (prop.type.name !== 'String') value = JSON.parse(value)
-                this.$set(this.$data.currentProps, propName, value)
-            } catch (e) {}
+            let types = this.getTypeArray(prop.type)
+            
+            if (types.includes('Object') || types.includes('Array')) {
+                try {
+                    value = JSON.parse(value)
+                } catch (e) {
+                    value = types.includes('Object') ? {} : []
+                }
+            }
+
+            this.$set(this.$data.currentProps, propName, value)
         },
         toggleModifier (value) {
             if (this.$data.currentModifiers.indexOf(value)> -1) {
