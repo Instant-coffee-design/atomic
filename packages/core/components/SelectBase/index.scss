@@ -21,6 +21,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: 5;
     width: 100%;
     border: 1px solid var(--color-border);
     background-color: var(--color-bg-light);
@@ -36,6 +37,7 @@
     line-height: 1.4;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     min-height: 35px;
     padding: 5px 10px;
     cursor: pointer;
@@ -43,14 +45,43 @@
     border-radius: 4px;
     margin-bottom: 2px;
 
+    &.is-selected {
+        background-color: var(--color-bg-xweak);
+
+        .SelectBase_optionCheck {
+            opacity: 1;
+        }
+    }
+
     &:hover {
         color: var(--color-ft-strong);
         background-color: var(--color-bg-xweak);
+
+        &.is-selected {
+            
+            .SelectBase_optionCheck {
+                display: none;
+            }
+
+            .SelectBase_optionRemove {
+                display: block;
+            }
+        }
     }
 
     &:last-child {
         margin-bottom: 0;
     }
+}
+
+.SelectBase_optionCheck {
+    opacity: 0;
+    flex-shrink: 0;
+}
+
+.SelectBase_optionRemove {
+    color: var(--color-ft-weak);
+    display: none;
 }
 
 .SelectBase_option--no-results {

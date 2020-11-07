@@ -49,7 +49,7 @@ export default {
     props: {
         component: { type: Object, default: () => ({}) },
         props: { type: Object, default: () => ({}) },
-        value: { type: [String, Number] }
+        value: { type: [String, Number, Array] }
     },
     data: () => ({
         currentProps: {},

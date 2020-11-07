@@ -43,7 +43,7 @@
         </div>
 
         <h2 class="Title mb-30 mt-60">Select</h2>
-        <div class="row-xs">
+        <div class="row-xs fx-wrap">
             <div class="col-6">
                 <h3 class="Title Title--s mb-10">Simple select</h3>
                 <sandbox :component="getProto('SelectBase')" :props="{
@@ -54,7 +54,7 @@
             </div>
 
             <div class="col-6">
-                <h3 class="Title Title--s mb-10">Select w/ seach</h3>
+                <h3 class="Title Title--s mb-10">Select w/ search</h3>
                 <sandbox :component="getProto('SelectBase')" :props="{
                     label: 'Choose your beverage',
                     options: input6options,
@@ -62,6 +62,18 @@
                     enableAdd: true,
                     placeholder: 'Type to search...'
                 }" v-model="input6" @add="onOptionAdd" />
+            </div>
+
+            <div class="col-6 mt-20">
+                <h3 class="Title Title--s mb-10">Select multiple w/ search</h3>
+                <sandbox :component="getProto('SelectBase')" :props="{
+                    label: 'Choose your beverage',
+                    options: input6options,
+                    enableMultiple: true,
+                    enableSearch: true,
+                    enableAdd: true,
+                    placeholder: 'Type to search...'
+                }" v-model="input7" @add="onOptionAdd" />
             </div>
         </div>
 
@@ -88,7 +100,8 @@ export default {
             { id: 2, label: 'Matcha latte', value: 'matcha-latte' },
             { id: 3, label: 'Pumpkin spice latte with super extra ice supplement', value: 'pumpkin-spice-latte' },
             { id: 4, label: 'Caramel macchiato', value: 'caramel-macchiato' }
-        ]
+        ],
+        input7: []
     }),
     methods: {
         getProto (name) {
@@ -96,11 +109,6 @@ export default {
         },
         onOptionAdd (label) {
             let id = this.$data.input6options.length 
-
-            console.log([
-                ...this.$data.input6options,
-                { id, label: label, value: label }
-            ])
 
             this.$set(this.$data, 'input6options', [
                 ...this.$data.input6options,

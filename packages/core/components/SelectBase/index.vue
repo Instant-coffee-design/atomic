@@ -25,10 +25,14 @@
             <div
                 v-for="option in displayOptions"
                 class="SelectBase_option"
-                @click.stop="onSelect(option.id)"
+                :class="{ 'is-selected': selectedOptions.includes(option) }"
+                @click.stop="onSelect(option.id, selectedOptions.includes(option))"
                 :key="option.id"
             >
                 {{ option.label }}
+
+                <i class="SelectBase_optionCheck fal fa-check"></i>
+                <i class="SelectBase_optionRemove fal fa-times"></i>
             </div>
 
             <div
@@ -52,8 +56,10 @@ export default {
     props: {
         label: { type: String, default: '' },
         options: { type: Array, default: () => [] },
-        value: { type: Number },
+        value: { type: [Number, Array] },
+        constraints: { type: Array, default: () => [] },
         placeholder: { type: String, default: '' },
+        enableMultiple: { type: Boolean, default: false },
         enableSearch: { type: Boolean, default: false },
         enableAdd: { type: Boolean, default: false }
     },
@@ -68,14 +74,17 @@ export default {
         }
     }),
     computed: {
+        arrayValue () {
+            return this.$props.value !== null ? (Array.isArray(this.$props.value) ? this.$props.value : [ this.$props.value ]) : []
+        },
         searchExists () {
             return this.$props.options.find(o => o.label == this.$data.search) ? true : false
         },
-        selectedOption () {
-            return this.$props.options.find(o => o.id == this.$props.value)
+        selectedOptions () {
+            return this.$props.options.filter(o => this.arrayValue.includes(o.id))
         },
         displayValue () {
-            return this.selectedOption && this.selectedOption.label ? this.selectedOption.label : null
+            return this.selectedOptions.length > 0 ? this.selectedOptions.map(o => o.label).join(', ') : ''
         },
         displayOptions () {
             let options = this.$props.options
@@ -90,11 +99,8 @@ export default {
         }
     },
     watch: {
-        displayValue: {
-            immediate: true,
-            handler (v) {
-                if (v && this.$refs.search) this.$refs.search.value = v
-            }
+        displayValue (v) {
+            if (this.$refs.search) this.$refs.search.value = v
         },
         ['state.isActive'] (v) {
             if (v) {
@@ -109,10 +115,22 @@ export default {
             }
         }
     },
+    mounted () {
+        if (this.displayValue) this.$refs.search.value = this.displayValue
+    },
     methods: {
-        onSelect (id) {
+        onSelect (id, deselect = false) {
             this.$data.state.isActive = false
-            this.$emit('input', id)
+
+            let total = this.$props.enableMultiple ? this.selectedOptions.map(o => o.id) : []
+            
+            if (deselect) {
+                total = total.filter(o => o != id)
+            } else {
+                total.push(this.$props.options.find(o => o.id == id).id)
+            }
+            
+            this.$emit('input', total.length > 0 ? (this.$props.enableMultiple ? total : total[0]) : null)
         },
         onFocus (toggle) {
             this.$data.state.isFocused = toggle
