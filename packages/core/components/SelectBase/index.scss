@@ -1,0 +1,70 @@
+.SelectBase {
+    @extend .InputBase;
+    position: relative;
+}
+
+.SelectBase_label {
+    @extend .InputBase_label;
+    transform: translate3d(-6px, -100%, 0) scale(0.75);
+    max-width: 9999px;
+}
+
+.SelectBase_value {
+    flex-grow: 1;
+    padding: 10px 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.SelectBase_options {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-light);
+    padding: 8px;
+    opacity: 0;
+    transform: translateY(calc(100% + 5px));
+    pointer-events: none;
+    transition: all 150ms ease;
+}
+
+.SelectBase_option {
+    font: var(--ft-s-medium);
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    min-height: 35px;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: var(--color-ft);
+    border-radius: 4px;
+    margin-bottom: 2px;
+
+    &:hover {
+        color: var(--color-ft-strong);
+        background-color: var(--color-bg-xweak);
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.SelectBase_option--no-results {
+    pointer-events: none;
+    color: var(--color-ft-weak);
+}
+
+/* STATES */
+
+.SelectBase.is-active {
+    
+    .SelectBase_options {
+        opacity: 1;
+        transform: translateY(100%);
+        pointer-events: all;
+    }
+}

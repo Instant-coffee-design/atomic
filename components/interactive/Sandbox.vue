@@ -6,7 +6,7 @@
                 :modifiers="currentModifiers"
                 :value="value"
                 v-bind="currentProps"
-                @input="(v) => $emit('input', v)"
+                v-on="$listeners"
             />
 
             <div class="Sandbox_toggle" @click="state.isOpen = !state.isOpen">
@@ -74,19 +74,26 @@ export default {
             immediate: true,
             deep: true,
             handler (v) {
-                if (v) {
-                    for (const [key, value] of Object.entries(v.props)) {
-                        if (this.defaultValues && this.defaultValues[key]) {
-                            this.$set(this.$data.currentProps, key, this.defaultValues[key])
-                        } else if (value.default) {
-                            this.$set(this.$data.currentProps, key, this.getPropValue(value))
-                        }
-                    }
-                }
+                if (v) this.update()
+            }
+        },
+        props: {
+            deep: true,
+            handler () {
+                this.update()
             }
         }
     },
     methods: {
+        update () {
+            for (const [key, value] of Object.entries(this.$props.component.props)) {
+                if (this.defaultValues && this.defaultValues[key]) {
+                    this.$set(this.$data.currentProps, key, this.defaultValues[key])
+                } else if (value.default) {
+                    this.$set(this.$data.currentProps, key, this.getPropValue(value))
+                }
+            }
+        },
         getStringValue (value) {
             switch (typeof value) {
                 case 'object': return JSON.stringify(value)

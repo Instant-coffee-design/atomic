@@ -40,12 +40,13 @@ $gutters: (
 
 $colors: (
     "bg-light": #ffffff,
-    "bg-xweak": #FFFEFC,
-    "bg-weak": #FFF7EA,
+    "bg-xweak": #fafafa,
+    "bg-weak": #e4e4e4,
     "bg-strong": #39302C,
 
     "border": #dadada,
-
+    
+    "ft-strong": #FF6D8B,
     "ft": #1c1c1c,
     "ft-weak": #999999,
     "ft-light": #ffffff,
@@ -69,7 +70,7 @@ $fonts: (
             "bold": 700,
         ),
         "sizes": (
-            "s": "13px/1.2",
+            "s": "14px/1.2",
             "m": "15px/1.6",
             "l": "18px/1.6"
         )

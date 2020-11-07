@@ -1,7 +1,7 @@
 <template>
     <div class="InputBase_errors" :class="{ 'is-active': isActive }">
-        <i class="fal fa-check" v-show="isValid"></i>
-        <i class="fal fa-times" v-show="!isValid"></i>
+        <i class="InputBase_errorValid fal fa-check" v-show="isValid"></i>
+        <i class="InputBase_errorInvalid fal fa-times" v-show="!isValid"></i>
 
         <div class="InputBase_errorPopin">
             <template v-for="error in errors">

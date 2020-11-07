@@ -3,14 +3,21 @@
     color: var(--color-ft);
     position: relative;
     border: 1px solid var(--color-border);
+    min-height: 45px;
+    min-width: 150px;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .InputBase_label {
     position: absolute;
     top: 0;
     left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 10px);
     display: flex;
     align-items: center;
     color: var(--color-ft-weak);
@@ -72,14 +79,14 @@
     justify-content: center;
 }
 
- .InputBase_plus {
-     margin-left: 3px;
- }
+.InputBase_plus {
+    margin-left: 3px;
+}
 
- .InputBase_errors {
-     position: relative;
+.InputBase_errors {
+    position: relative;
 
-     &.is-active {
+    &.is-active {
 
         .InputBase_errorPopin {
             opacity: 1;
@@ -87,9 +94,9 @@
             pointer-events: all;
         }
     }
- }
+}
 
- .InputBase_errorPopin {
+.InputBase_errorPopin {
     font: var(--ft-s);
     width: 200px;
     padding: 10px;
@@ -102,4 +109,17 @@
     opacity: 0;
     pointer-events: none;
     transition: all 150ms ease;
- }
+}
+
+.InputBase_errorValid {
+    color: var(--color-confirm);
+}
+
+.InputBase_errorInvalid {
+    color: var(--color-error);
+}
+
+.InputBase_reset {
+    color: var(--color-ft-weak);
+    cursor: pointer;
+}

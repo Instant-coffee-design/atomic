@@ -6,13 +6,15 @@
 .LayoutDefault_nav {
     width: 20%;
     max-width: 250px;
-    height: calc(100vh - 80px);
-    margin: 40px 0;
+    height: calc(100vh - 40px);
+    margin: 20px 0;
+    padding: 20px 0;
     border-right: 1px solid var(--color-border);
     display: flex;
     justify-content: center;
+    flex-shrink: 0;
     position: sticky;
-    top: 40px;
+    top: 20px;
 }
 
 .LayoutDefault_navContainer {
@@ -29,19 +31,29 @@
 
 .LayoutDefault_navLogo {
     width: 40px;
-    // align-self: center;
+    align-self: center;
 }
 
 .LayoutDefault_navItem {
     display: block;
-    margin: 10px 0;
+    margin: 1px 0;
+    padding: 5px 10px;
+    border-radius: 4px;
+    min-width: 180px;
 
     &.is-active {
+        pointer-events: none;
         font-weight: bold;
+        background-color: var(--color-bg-xweak);
+    }
+
+    &:hover {
+        color: var(--color-ft-strong);
+        background-color: var(--color-bg-xweak);
     }
 }
 
 .LayoutDefault_navFooter {
     font: var(--ft-s-medium);
-    // align-self: center;
+    align-self: center;
 }
