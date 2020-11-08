@@ -7,11 +7,12 @@
                 :value="value"
                 v-bind="currentProps"
                 v-on="$listeners"
+                v-if="component"
             />
 
             <slot></slot>
 
-            <div class="Sandbox_toggle" @click="state.isOpen = !state.isOpen">
+            <div class="Sandbox_toggle" @click="state.isOpen = !state.isOpen" v-if="component">
                 <i class="fal fa-cog"></i>
             </div>
         </div>
@@ -49,8 +50,8 @@ export default {
     name: 'Sandbox',
     components: { ButtonBase, InputBase },
     props: {
-        component: { type: Object, default: () => ({}) },
-        props: { type: Object, default: () => ({}) },
+        component: { type: [Object, Boolean], default: false },
+        props: { type: [Object, Boolean], default: false },
         value: { type: [String, Number, Array] }
     },
     data: () => ({
@@ -62,9 +63,13 @@ export default {
     }),
     computed: {
         modifiers () {
+            if (!this.$props.component) return false
+
             return this.$props.component.schema ? this.$props.component.schema.modifiers : null
         },
         defaultValues () {
+            if (!this.$props.component) return false
+
             return {
                 ...(this.$props.component.schema && this.$props.component.schema.default ? this.$props.component.schema.default : {}),
                 ...this.$props.props
@@ -81,8 +86,8 @@ export default {
         },
         props: {
             deep: true,
-            handler () {
-                this.update()
+            handler (v) {
+                if (v) this.update()
             }
         }
     },

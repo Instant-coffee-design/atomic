@@ -1,6 +1,5 @@
 <template>
     <div class="LayoutDefault">
-
         <div class="LayoutDefault_body">
             <div class="LayoutDefault_nav">
                 <div class="LayoutDefault_navContainer">
@@ -30,6 +29,8 @@
                 <Nuxt />
             </div>
         </div>
+
+        <tooltip-manager />
     </div>
 </template>
 
@@ -37,10 +38,11 @@
 import logo from '@/assets/img/logo/logo.png'
 
 import HeaderBase from '@/components/base/HeaderBase'
+import TooltipManager from '@/packages/core/components/TooltipManager'
 
 export default {
     name: 'LayoutDefault',
-    components: { HeaderBase },
+    components: { HeaderBase, TooltipManager },
     data: () => ({
         assets: { logo },
         items: [
