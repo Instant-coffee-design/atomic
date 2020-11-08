@@ -9,6 +9,8 @@
                 v-on="$listeners"
             />
 
+            <slot></slot>
+
             <div class="Sandbox_toggle" @click="state.isOpen = !state.isOpen">
                 <i class="fal fa-cog"></i>
             </div>
@@ -86,10 +88,12 @@ export default {
     },
     methods: {
         update () {
+            if (!this.$props.component.props) return
+            
             for (const [key, value] of Object.entries(this.$props.component.props)) {
-                if (this.defaultValues && this.defaultValues[key]) {
+                if (this.defaultValues && this.defaultValues[key] !== undefined) {
                     this.$set(this.$data.currentProps, key, this.defaultValues[key])
-                } else if (value.default) {
+                } else if (value.default !== undefined) {
                     this.$set(this.$data.currentProps, key, this.getPropValue(value))
                 }
             }

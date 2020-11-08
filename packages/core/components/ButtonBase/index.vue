@@ -4,6 +4,7 @@
         class="ButtonBase"
         :class="{ ...$modifiers }"
         v-bind="computedAttrs"
+        v-on="$listeners"
     >
         <div class="ButtonBase_content">
             <span class="ButtonBase_before">

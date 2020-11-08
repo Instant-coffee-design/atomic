@@ -10,7 +10,7 @@
             :placeholder="placeholder"
             @focus="onFocus(true)"
             @blur="onFocus(false)"
-            @input="(e) => onSearch(e.target.value)"
+            @input="(e) => search = e.target.value"
             :disabled="!enableSearch"
             ref="search"
         />
@@ -37,14 +37,18 @@
 
             <div
                 class="SelectBase_option SelectBase_option--add"
-                @click="onAdd(search)"
+                @click="$emit('add', search)"
                 v-if="enableAdd && search && !searchExists"
             >
-                <i class="fal fa-plus mr-10"></i> {{ $t('component.selectBase.add', { value: search }) }}
+                <span>
+                    <i class="fal fa-plus mr-10"></i> {{ $t('component.selectBase.add', { value: search }) }}
+                </span>
             </div>
 
             <div class="SelectBase_option SelectBase_option--no-results" v-if="displayOptions.length <= 0 && !enableAdd">
-                <i class="fal fa-times mr-10"></i> {{ $t('component.selectBase.noResults') }}
+                <span>
+                    <i class="fal fa-times mr-10"></i> {{ $t('component.selectBase.noResults') }}
+                </span>
             </div>
         </div>
     </div>
@@ -120,7 +124,7 @@ export default {
     },
     methods: {
         onSelect (id, deselect = false) {
-            this.$data.state.isActive = false
+            if (!this.$props.enableMultiple) this.$data.state.isActive = false
 
             let total = this.$props.enableMultiple ? this.selectedOptions.map(o => o.id) : []
             
@@ -143,12 +147,6 @@ export default {
                     this.$refs.search.value = this.displayValue ? this.displayValue : ''
                 }, 100)
             }
-        },
-        onSearch (search) {
-            this.$data.search = search
-        },
-        onAdd (search) {
-            this.$emit('add', search)
         }
     }
 }
