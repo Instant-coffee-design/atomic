@@ -69,6 +69,27 @@
     }
 }
 
+/* MODIFIERS */
+
+.PopinBase--panel {
+    justify-content: flex-end;
+
+    .PopinBase_body {
+        height: 100%;
+        max-height: 100%;
+        opacity: 1;
+        transform: translateX(100%);
+        transition: all 250ms ease;
+    }
+
+    &.is-active {
+        
+        .PopinBase_body {
+            transform: translateX(0);
+        }
+    }
+}
+
 /* RESPONSIVE */
 
 @include breakpoint-s {

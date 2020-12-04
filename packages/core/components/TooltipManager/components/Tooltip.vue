@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import BaseMixin from '../../../helpers/mixins/BaseMixin'
+import ModifiersMixin from '../../../helpers/mixins/ModifiersMixin'
 
 export default {
     name: 'TooltipBase',
-    mixins: [ BaseMixin ],
+    mixins: [ ModifiersMixin ],
     props: {
         tag: { type: String, default: 'span' },
         top: { type: Number, default: 10 },

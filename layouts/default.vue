@@ -49,6 +49,7 @@ export default {
             { id: 0, label: 'Buttons, links', link: '/components/buttons' },
             { id: 1, label: 'Popins, tooltips', link: '/components/popins' },
             { id: 2, label: 'Forms, inputs', link: '/components/forms' },
+            { id: 6, label: 'Paper, text editor', link: '/components/paper' },
             { id: 3, label: 'Sliders, galleries', link: '/components/sliders' },
             { id: 4, label: 'Functionals', link: '/components/functionals' },
             { id: 5, label: 'Images, icons', link: '/components/images' },

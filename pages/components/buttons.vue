@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { ButtonBase } from '@/packages/core'
+import { ButtonBase } from '@/packages/core/index.js'
 
 export default {
     name: 'ComponentsButtons',

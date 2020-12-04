@@ -20,7 +20,7 @@
 .SelectBase_options {
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: -1px;
     z-index: 5;
     width: 100%;
     border: 1px solid var(--color-border);

@@ -38,9 +38,7 @@ ul, li, ol {
 
 button,
 input,
-input::selection,
-textarea,
-textarea::selection {
+textarea {
     border: none;
     display: block;
     appearance: none;
@@ -51,4 +49,9 @@ textarea::selection {
 
 input, textarea {
     width: 100%;
+}
+
+fieldset {
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
 }

@@ -1,0 +1,80 @@
+.PaperEditor {
+    color: var(--color-ft);
+
+    --color-ft: #1c1c1c;
+    --color-border: #efefef;
+    --color-bg-xweak: #fafafa;
+
+    .SelectBase {
+        min-height: 0;
+        min-width: 0;
+        width: 180px;
+
+        .SelectBase_value {
+            padding: 5px 10px;
+        }
+
+        .SelectBase_options {
+            width: 300px;
+        }
+    }
+}
+
+.PaperEditor_menu,
+.PaperEditor_menuGroup {
+    display: flex;
+    align-items: center;
+}
+
+.PaperEditor_menu {
+    padding: 5px;
+    border: 1px solid var(--color-border);
+}
+
+.PaperEditor_button {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 13px;
+    background-color: transparent;
+    margin: 1px;
+    cursor: pointer;
+    color: var(--color-ft-weak);
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background-color: var(--color-ft);
+        opacity: 0;
+    }
+
+    &.is-active {
+
+        &::after {
+            opacity: 1;
+        }
+    }
+
+    &.is-active,
+    &:hover {
+        color: var(--color-ft);
+        background-color: var(--color-bg-xweak);
+    }
+}
+
+.PaperEditor_menuGroup {
+    margin-right: 10px;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.PaperEditor_view {
+    margin-top: 10px;
+}

@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import { InputBase, SelectBase } from '@/packages/core'
+import { InputBase, SelectBase } from '@/packages/core/index.js'
 
 export default {
     name: 'ComponentsButtons',

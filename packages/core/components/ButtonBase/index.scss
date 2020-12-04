@@ -1,4 +1,5 @@
 .ButtonBase {
+    display: flex;
     font: var(--ft-m-medium);
     line-height: 1;
     color: var(--color-ft-light);
@@ -6,36 +7,12 @@
     padding: 15px 12px;
     text-align: center;
     cursor: pointer;
-
-    &:hover {
-
-        .ButtonBase_content {
-            opacity: 0.75;
-        }
-    }
-
-    &:active {
-
-        .ButtonBase_content {
-            opacity: 0.25;
-        }
-    }
-
-    &:disabled {
-        pointer-events: none;
-    }
 }
 
 .ButtonBase_content {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 250ms ease;
     user-select: none;
-}
-
-/* MODIFIERS */
-
-.ButtonBase--s {
-    padding: 2px;
+    white-space: nowrap;
 }

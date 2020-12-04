@@ -31,8 +31,8 @@
             >
                 {{ option.label }}
 
-                <i class="SelectBase_optionCheck fal fa-check"></i>
-                <i class="SelectBase_optionRemove fal fa-times"></i>
+                <i class="SelectBase_optionCheck fal fa-check" v-if="enableMultiple"></i>
+                <i class="SelectBase_optionRemove fal fa-times" v-if="enableMultiple"></i>
             </div>
 
             <div
@@ -45,7 +45,7 @@
                 </span>
             </div>
 
-            <div class="SelectBase_option SelectBase_option--no-results" v-if="displayOptions.length <= 0 && !enableAdd">
+            <div class="SelectBase_option SelectBase_option--no-results" v-if="displayOptions.length <= 0 && !enableAdd && enableSearch">
                 <span>
                     <i class="fal fa-times mr-10"></i> {{ $t('component.selectBase.noResults') }}
                 </span>
@@ -60,7 +60,7 @@ export default {
     props: {
         label: { type: String, default: '' },
         options: { type: Array, default: () => [] },
-        value: { type: [Number, Array] },
+        value: { type: [Number, Array, Boolean] },
         constraints: { type: Array, default: () => [] },
         placeholder: { type: String, default: '' },
         enableMultiple: { type: Boolean, default: false },
@@ -128,7 +128,7 @@ export default {
 
             let total = this.$props.enableMultiple ? this.selectedOptions.map(o => o.id) : []
             
-            if (deselect) {
+            if (deselect && this.$props.enableMultiple) {
                 total = total.filter(o => o != id)
             } else {
                 total.push(this.$props.options.find(o => o.id == id).id)

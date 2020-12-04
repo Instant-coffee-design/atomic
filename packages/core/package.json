@@ -1,12 +1,29 @@
 {
   "name": "@instant-coffee/core",
-  "version": "1.0.0",
+  "version": "1.2.5",
   "description": "",
   "repository": "https://github.com/Instant-coffee-design/atomic/tree/main/packages/core",
-  "main": "index.js",
+  "main": "./dist/core.common.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bundle": "vue-cli-service build --target lib --name core index.js"
   },
   "author": "TheotimeColin",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "^3.6.4",
+    "tiptap": "^1.30.0",
+    "tiptap-extensions": "^1.33.2",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
+    "@babel/plugin-transform-spread": "^7.7.4",
+    "@babel/preset-env": "7.0.0-beta.44",
+    "@vue/cli-service": "^4.3.1",
+    "babel-minify-webpack-plugin": "^0.3.1",
+    "vue-template-compiler": "^2.6.10"
+  }
 }

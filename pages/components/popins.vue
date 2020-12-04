@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { PopinBase, ButtonBase } from '@/packages/core'
+import { PopinBase, ButtonBase } from '@/packages/core/index.js'
 
 export default {
     name: 'ComponentsPopins',
