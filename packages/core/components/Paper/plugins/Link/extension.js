@@ -14,6 +14,7 @@ export default class Link extends Mark {
             attrs: {
                 href: { default: null },
                 is: { default: 'a' },
+                target: { default: '_self' },
                 class: { default: ['ButtonBase--link'] }
             },
             inclusive: false,
@@ -21,7 +22,8 @@ export default class Link extends Mark {
                 tag: 'a',
                 priority: 9,
                 getAttrs: dom => ({
-                    href: dom.getAttribute('href')
+                    href: dom.getAttribute('href'),
+                    target: dom.hasAttribute('target') ? dom.getAttribute('target') : '_self'
                 }),
             }],
             toDOM: node => ['a', {

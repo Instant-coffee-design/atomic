@@ -10,7 +10,7 @@
                             :is-active="isActive[option.id] ? isActive[option.id]() : false"
                             :icon="option.icon"
                             :current-node="option.isNode ? getNodeAttrs(option.id) : (option.isMark ? getMarkAttrs(option.id) : null)"
-                            v-bind="option.attrs"
+                            v-bind="option.attrs ? option.attrs : {}"
 
                             @click="option.popin ? state.current = option.id : commands[option.id]()"
                             @input="(v) => commands[option.id](v) || undefined"
@@ -25,6 +25,7 @@
                         v-for="(option, i) in group.filter(o => o.popin)"
                         v-bind="option.popin"
                         :is-active="option.id == state.current"
+                        :current-node="option.isNode ? getNodeAttrs(option.id) : (option.isMark ? getMarkAttrs(option.id) : null)"
                         @close="state.current = ''"
                         @input="(v) => commands[option.id](v)"
                         :key="i"

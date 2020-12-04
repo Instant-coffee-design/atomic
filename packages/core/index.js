@@ -5,6 +5,7 @@ export { default as PopinBase } from './components/PopinBase/index.vue'
 export { default as TooltipManager } from './components/TooltipManager/index.vue'
 export { default as PaperEditor } from './components/Paper/editor.vue'
 export { default as PaperView } from './components/Paper/view.vue'
+export { default as ToggleBase } from './components/ToggleBase/index.vue'
 
 export { default as HelpersMixin } from './helpers/mixins/HelpersMixin.js'
 export { default as ModifiersMixin } from './helpers/mixins/ModifiersMixin.js'

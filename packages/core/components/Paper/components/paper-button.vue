@@ -19,7 +19,8 @@ export default {
     props: {
         subMenu: { type: Boolean, default: false },
         isActive: { type: Boolean, default: false },
-        icon: { type: [String, Boolean], default: false }
+        icon: { type: [String, Boolean], default: false },
+        currentNode: { type: Object, default: () => {} }
     }
 }
 </script>

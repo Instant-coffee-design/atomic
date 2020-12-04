@@ -33,6 +33,11 @@
 .InputBase_element {
     padding: 10px 15px;
     flex-grow: 1;
+
+    &::placeholder {
+        color: var(--color-ft-weak);
+        opacity: 0;
+    }
 }
 
 .Inputbase_helpers {
@@ -58,6 +63,13 @@
 
     .InputBase_label {
         transform: translate3d(-6px, -100%, 0) scale(0.75);
+    }
+
+    .InputBase_element {
+
+        &::placeholder {
+            opacity: 1;
+        }
     }
 }
 

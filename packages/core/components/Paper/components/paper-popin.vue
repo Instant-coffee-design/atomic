@@ -12,7 +12,11 @@
                     {{ content }}
 
                     <div v-for="(input, id) in form" class="mv-20" :key="id">
-                        <input-base v-bind="input" v-model="value[id]" />
+                        <component
+                            :is="input.is ? input.is : 'input-base'"
+                            v-bind="input"
+                            v-model="value[id]"
+                        />
                     </div>
                 </div>
             </template>
@@ -31,11 +35,12 @@
 <script>
 import PopinBase from '../../PopinBase'
 import InputBase from '../../InputBase'
+import ToggleBase from '../../ToggleBase'
 import ButtonBase from '../../ButtonBase'
 
 export default {
     name: 'PaperPopin',
-    components: { PopinBase, ButtonBase, InputBase },
+    components: { PopinBase, ButtonBase, InputBase, ToggleBase },
     props: {
         content: { type: String, default: '' },
         form: { type: Object, default: () => {} },
@@ -51,15 +56,30 @@ export default {
             immediate: true,
             deep: true,
             handler (form) {
-                this.$data.value = {}
-
-                Object.keys(form).forEach(id => {
-                    this.$data.value[id] = form[id].value
-                })
+                this.$data.value = this.formToValues(form)
+            }
+        },
+        currentNode: {
+            immediate: true,
+            handler (node) {
+                this.$data.value = {
+                    ...this.$data.value,
+                    ...this.formToValues(this.$props.form),
+                    ...(node ? node : {})
+                }
             }
         }
     },
     methods: {
+        formToValues (form) {
+            let values = {}
+
+            Object.keys(form).forEach(id => {
+                values[id] = form[id].value
+            })
+
+            return values
+        },
         onInput () {
             this.$emit('input', this.$data.value)
             this.$emit('close')
