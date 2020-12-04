@@ -16,3 +16,13 @@
     user-select: none;
     white-space: nowrap;
 }
+
+/* MODIFIERS */
+
+.ButtonBase--link {
+    display: inline-flex;
+    background-color: transparent;
+    color: var(--color-primary);
+    padding: 0;
+    text-align: left;
+}

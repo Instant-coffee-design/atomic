@@ -12,32 +12,27 @@ export default class Link extends Mark {
     get schema() {
         return {
             attrs: {
-                link: { default: null },
-                context: { default: null }
+                href: { default: null },
+                is: { default: 'a' },
+                class: { default: ['ButtonBase--link'] }
             },
             inclusive: false,
             parseDOM: [{
-                tag: 'a[data-context]',
-                getAttrs: dom => {
-                    return {
-                        link: dom.getAttribute('href'),
-                        context: JSON.parse(dom.getAttribute('data-context')),
-                    }
-                },
+                tag: 'a',
+                priority: 9,
+                getAttrs: dom => ({
+                    href: dom.getAttribute('href')
+                }),
             }],
             toDOM: node => ['a', {
-                ['data-context']: JSON.stringify(node.attrs.context).replace('&quot;', `'`),
-                href: node.attrs.link
+                href: node.attrs.href
             }, 0]
         }
     }
 
     commands({ type }) {
         return attrs => {
-            if (attrs.link) {
-                return updateMark(type, attrs)
-            }
-
+            if (attrs.href) return updateMark(type, attrs)
             return removeMark(type)
         }
     }

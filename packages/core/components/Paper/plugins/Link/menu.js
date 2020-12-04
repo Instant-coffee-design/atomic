@@ -1,7 +1,16 @@
 export default function () {
     let options = {
-        id: 'Link',
-        icon: 'link'
+        id: 'link',
+        icon: 'link',
+        popin: {
+            content: 'Hello',
+            form: {
+                href: { label: 'Lien', type: 'text', value: '' }
+            },
+            attrs: {
+                modifiers: ['s']
+            }
+        }
     }
 
     return options

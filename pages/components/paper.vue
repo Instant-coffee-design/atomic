@@ -18,7 +18,7 @@ export default {
     name: 'ComponentsPaper',
     components: { PaperEditor, PaperView },
     data: () => ({
-        value: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed orci nisi, fringilla sit amet leo ut, scelerisque fringilla lorem.</p><h1>Etiam eu lacus eget nunc ultrices pulvinar. Integer eu pharetra ex.</h1>'
+        value: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed orci nisi, <a href="https://google.com">fringilla</a> sit amet leo ut, scelerisque fringilla lorem.</p><h1>Etiam eu lacus eget nunc ultrices pulvinar. Integer eu pharetra ex.</h1>'
     }),
     methods: {
         getProto (name) {

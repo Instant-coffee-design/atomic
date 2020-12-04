@@ -2,7 +2,7 @@
     <component
         :is="tag"
         class="ButtonBase"
-        :class="{ ...$modifiers }"
+        :class="[ $modifiers, (node ? node.attrs.class : []) ]"
         v-bind="computedAttrs"
         v-on="$listeners"
     >
@@ -41,8 +41,7 @@ export default {
         tag: { type: String, default: 'button' },
         link: { type: String },
         text: { type: String },
-        target: { type: String },
-        disabled: { type: Boolean },
+        node: { type: Object, default: () => {} },
         iconBefore: { type: String, default: '' },
         iconAfter: { type: String, default: '' },
         attrs: { type: Object, default: () => ({}) }
@@ -50,10 +49,9 @@ export default {
     computed: {
         computedAttrs () {
             return {
-                disabled: this.$props.disabled,
-                target: this.$props.target,
                 href: this.$props.link,
-                ...this.$props.attrs
+                ...this.$props.attrs,
+                ...(this.$props.node ? this.$props.node.attrs : {})
             }
         }
     }

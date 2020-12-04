@@ -24,14 +24,14 @@ export default {
         editor: {
             immediate: true,
             handler (v) {
-                if (v) this.$data.initEditor = v
+                this.$data.initEditor = v
             }
         }
     },
     mounted () {
         if (!this.$props.editable) {
             this.$data.initEditor = new Editor({
-                extensions: Extensions.plugins,
+                extensions: Extensions.plugins(),
                 content: this.$props.value,
             })
         }
