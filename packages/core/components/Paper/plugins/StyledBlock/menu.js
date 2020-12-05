@@ -1,11 +1,12 @@
-export default function () {
+export default function (params = {}) {
+
     let options = {
         id: 'styledBlock',
         icon: 'times',
         component: 'paper-select',
         isNode: true,
         attrs: {
-            items: [
+            items: params.options ? params.options : [
                 { id: 4, label: 'Paragraphe', value: { tag: 'p', classes: [] } },
                 { id: 0, label: 'Titre 1', value: { tag: 'h1', classes: [] } },
                 { id: 1, label: 'Titre 2', value: { tag: 'h2', classes: [] } },

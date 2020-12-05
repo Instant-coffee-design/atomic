@@ -1,18 +1,37 @@
 <template>
-    <div class="InputBase" :class="[ ...classes ]">
+    <div class="InputBase" :class="[ $modifiers, ...classes ]">
         <label class="InputBase_label" v-if="label">
             {{ label }}
         </label>
 
-        <input
-            class="InputBase_element"
-            :value="value"
-            :type="type"
-            v-bind="attrs"
-            @focus="state.isFocused = true"
-            @blur="state.isFocused = false"
-            @input="(e) => onInput(e.target.value)"
-        >
+        <template v-if="type == 'file'">
+            <button-base class="InputBase_fileSelect">
+                {{ label ||  "Choisir un fichier" }}
+            </button-base>
+
+            <label class="InputBase_fileLabel">
+                {{ value.length > 0 ? (value.length == 1 ? value[0].name : value.length + ' fichiers sélectionnés') : 'Aucun fichier sélectionné' }}
+            </label>
+
+            <input
+                class="InputBase_element"
+                :type="type"
+                v-bind="attrs"
+                @input="(e) => onInput(Object.keys(e.target.files).map(key => e.target.files[key]))"
+            >
+        </template>
+
+        <template v-else>
+            <input
+                class="InputBase_element"
+                :value="value"
+                :type="type"
+                v-bind="attrs"
+                @focus="state.isFocused = true"
+                @blur="state.isFocused = false"
+                @input="(e) => onInput(e.target.value)"
+            >
+        </template>
 
         <div class="Inputbase_helpers" v-if="helpers.length > 0 || Object.keys(constraints).length > 0">
             <helper-number
@@ -47,15 +66,17 @@ import HelperErrors from './components/HelperErrors'
 import HelperNumber from './components/HelperNumber'
 import HelperReset from './components/HelperReset'
 import { validateWithConstraints } from '../../helpers/InputValidators'
+import ModifiersMixin from '../../helpers/mixins/ModifiersMixin'
 
 export default {
     name: 'InputBase',
     schema: SCHEMA,
+    mixins: [ ModifiersMixin ],
     components: { HelperErrors, HelperNumber, HelperReset },
     props: {
-        label: { type: String },
+        label: { type: String, default: '' },
         type: { type: String, default: 'text' },
-        value: { type: [String, Number, Boolean] },
+        value: { type: [String, Number, Boolean, Object, Array] },
         helpers: { type: Array, default: () => [] },
         constraints: { type: Object, default: () => ({}) },
         default: { type: [String, Number] },
@@ -73,6 +94,7 @@ export default {
         classes () {
             let classes = {}
 
+            if (this.$props.type == 'file') classes['InputBase--file'] = true
             if (this.$data.state.isValue) classes['is-value'] = true
             if (this.$data.state.isFocused) classes['is-focused'] = true
             

@@ -73,6 +73,46 @@
     }
 }
 
+/* MODIFIERS */
+
+.InputBase--file {
+
+    & > .InputBase_label {
+        display: none;
+    }
+
+    .InputBase_fileSelect {
+        margin-right: 10px;
+    }
+
+    .InputBase_fileLabel {
+        color: var(--color-ft-weak);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .InputBase_element {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+.InputBase--file-upload {
+
+    .InputBase_fileSelect,
+    .InputBase_label,
+    .InputBase_fileLabel {
+        display: none;
+    }
+
+    .InputBase_element {
+        height: 100%;
+    }
+}
+
 /* SUB-COMPONENTS */
 
 .InputBase_minus,

@@ -18,6 +18,27 @@
             </div>
         </div>
 
+        <h2 class="Title mb-30 mt-60">Input file</h2>
+        <div class="row-xs">
+            <div class="col-6">
+                <h3 class="Title Title--s mb-10">Base, no value</h3>
+                <sandbox :component="getProto('InputBase')" :props="{ 
+                    label: 'Choisir un fichier',
+                    type: 'file'
+                }" v-model="inputFile1" />
+            </div>
+            <div class="col-6">
+                <h3 class="Title Title--s mb-10">Base, multiple</h3>
+                <sandbox :component="getProto('InputBase')" :props="{
+                    label: 'Choisis une photo',
+                    type: 'file',
+                    attrs: {
+                        multiple: true
+                    }
+                }" v-model="inputFile2" />
+            </div>
+        </div>
+
         <h2 class="Title mb-30 mt-60">Helpers</h2>
         <div class="row-xs">
             <div class="col-6">
@@ -77,16 +98,21 @@
             </div>
         </div>
 
+        <h2 class="Title mb-30 mt-60">UploadBase</h2>
+        <sandbox :component="getProto('UploadBase')" :props="{
+
+        }" />
+
         <div class="pv-100"></div>
     </div>
 </template>
 
 <script>
-import { InputBase, SelectBase } from '@/packages/core/index.js'
+import { InputBase, SelectBase, UploadBase } from '@/packages/core/index.js'
 
 export default {
     name: 'ComponentsButtons',
-    components: { InputBase, SelectBase },
+    components: { InputBase, SelectBase, UploadBase },
     data: () => ({
         input1: '',
         input2: 'With caramel',
@@ -101,7 +127,9 @@ export default {
             { id: 3, label: 'Pumpkin spice latte with super extra ice supplement', value: 'pumpkin-spice-latte' },
             { id: 4, label: 'Caramel macchiato', value: 'caramel-macchiato' }
         ],
-        input7: []
+        input7: [],
+        inputFile1: '',
+        inputFile2: ''
     }),
     methods: {
         getProto (name) {
