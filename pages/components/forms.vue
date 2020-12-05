@@ -98,21 +98,38 @@
             </div>
         </div>
 
+        <h2 class="Title mb-30 mt-60">Checkbox & radio</h2>
+        <div class="row-xs fx-wrap">
+            <div class="col-6">
+                <h3 class="Title Title--s mb-10">Simple toggle</h3>
+                <sandbox :component="getProto('ToggleBase')" :props="{
+                    label: 'Extra caramel?'
+                }" v-model="checkbox1" />
+            </div>
+
+            <div class="col-6">
+                <h3 class="Title Title--s mb-10">Simple toggle, no label</h3>
+                <sandbox :component="getProto('ToggleBase')" :props="{
+                    
+                }" v-model="checkbox1" />
+            </div>
+        </div>
+
         <h2 class="Title mb-30 mt-60">UploadBase</h2>
         <sandbox :component="getProto('UploadBase')" :props="{
-
-        }" />
+    
+        }" v-model="inputFiles" />
 
         <div class="pv-100"></div>
     </div>
 </template>
 
 <script>
-import { InputBase, SelectBase, UploadBase } from '@/packages/core/index.js'
+import { InputBase, SelectBase, UploadBase, ToggleBase } from '@/packages/core/index.js'
 
 export default {
     name: 'ComponentsButtons',
-    components: { InputBase, SelectBase, UploadBase },
+    components: { InputBase, SelectBase, UploadBase, ToggleBase },
     data: () => ({
         input1: '',
         input2: 'With caramel',
@@ -129,7 +146,9 @@ export default {
         ],
         input7: [],
         inputFile1: '',
-        inputFile2: ''
+        inputFile2: '',
+        inputFiles: [],
+        checkbox1: false
     }),
     methods: {
         getProto (name) {

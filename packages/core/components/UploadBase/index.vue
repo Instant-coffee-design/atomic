@@ -92,6 +92,14 @@ export default {
             return status
         }
     },
+    watch: {
+        value: {
+            immediate: true,
+            handler (v) {
+                this.$data.files = v
+            }
+        }
+    },
     methods: {
         getTypeIcon (type) {
             let icon = 'fa-file-alt'

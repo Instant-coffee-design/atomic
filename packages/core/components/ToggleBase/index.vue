@@ -1,10 +1,10 @@
 <template>
-    <div class="Toggle" v-bind="attrs">
-        <label class="Toggle_label">
-            {{ label }}
-            <input class="Toggle_checkbox" type="checkbox" :checked="transformedValue" @click="onInput(!transformedValue)">
-        </label>
-    </div>
+    <label class="Toggle" v-bind="attrs">
+        <input class="Toggle_checkbox" type="checkbox" :checked="transformedValue" @click="onInput(!transformedValue)">
+        <div class="Toggle_container"></div>
+
+        <p class="Toggle_label" v-if="label">{{ label }}</p>
+    </label>
 </template>
 
 <script>
