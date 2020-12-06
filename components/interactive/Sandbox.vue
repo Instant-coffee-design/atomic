@@ -3,6 +3,7 @@
         <div class="Sandbox_content">
             <component
                 :is="component"
+                :class="classes"
                 :modifiers="currentModifiers"
                 :value="value"
                 v-bind="currentProps"
@@ -50,6 +51,7 @@ export default {
     name: 'Sandbox',
     components: { ButtonBase, InputBase },
     props: {
+        classes: { type: String, defualt: '' },
         component: { type: [Object, Boolean], default: false },
         props: { type: [Object, Boolean], default: false },
         value: { type: [String, Number, Array] }

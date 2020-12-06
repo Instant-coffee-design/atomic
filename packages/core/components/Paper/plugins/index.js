@@ -1,11 +1,13 @@
 import { Heading, Bold, Image, History, Italic, OrderedList, BulletList, ListItem } from 'tiptap-extensions'
 import { LinkExtension, LinkMenu } from './Link'
+import ImageMenu from './Image/menu.js'
 import { StyledBlockExtension, StyledBlockMenu } from './StyledBlock'
 
 export default {
     menu: {
         link: LinkMenu,
-        styledBlock: StyledBlockMenu
+        styledBlock: StyledBlockMenu,
+        image: ImageMenu
     },
     plugins: () => {
         

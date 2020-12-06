@@ -21,7 +21,7 @@ export default function () {
                 }
             },
             attrs: {
-                modifiers: ['s']
+                modifiers: ['s', 'absolute-header']
             }
         }
     }

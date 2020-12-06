@@ -8,7 +8,7 @@
             @close="$emit('close')"
         >
             <template slot="content">
-                <div class="p-40">
+                <div class="p-30">
                     {{ content }}
 
                     <div v-for="(input, id) in form" class="mv-20" :key="id">
@@ -35,12 +35,13 @@
 <script>
 import PopinBase from '../../PopinBase'
 import InputBase from '../../InputBase'
+import InputMedia from '../../InputMedia'
 import ToggleBase from '../../ToggleBase'
 import ButtonBase from '../../ButtonBase'
 
 export default {
     name: 'PaperPopin',
-    components: { PopinBase, ButtonBase, InputBase, ToggleBase },
+    components: { PopinBase, ButtonBase, InputBase, ToggleBase, InputMedia },
     props: {
         content: { type: String, default: '' },
         form: { type: Object, default: () => {} },

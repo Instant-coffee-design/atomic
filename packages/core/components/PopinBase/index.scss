@@ -71,6 +71,43 @@
 
 /* MODIFIERS */
 
+.PopinBase--s {
+    
+    .PopinBase_body {
+        max-width: 450px;
+    }
+}
+
+.PopinBase--xs {
+    
+    .PopinBase_body {
+        max-width: 300px;
+    }
+}
+
+.PopinBase--no-header {
+
+    .PopinBase_header {
+        display: none;
+    }
+}
+
+.PopinBase--absolute-header {
+
+    .PopinBase_header {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: none;
+        padding: 0;
+        display: block;
+    }
+    
+    .PopinBase_close {
+        padding: 15px;
+    }
+}
+
 .PopinBase--panel {
     justify-content: flex-end;
 

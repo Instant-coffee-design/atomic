@@ -76,7 +76,7 @@ export default {
                 { id: 'italic', label: 'Italique', icon: 'italic' },
             ], [
                 Extensions.menu.link(),
-                { id: 'fileSelect', label: 'Image', icon: 'image' },
+                Extensions.menu.image(),
                 { id: 'blockquote', label: 'Citation', icon: 'quote-right' },
                 { id: 'bullet_list', label: 'Liste', icon: 'list-ul' },
                 { id: 'ordered_list', label: 'Liste numérotée', icon: 'list-ol' },
