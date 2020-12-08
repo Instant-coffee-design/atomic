@@ -4,20 +4,16 @@
             <div
                 v-for="image in row.images"
                 class="GalleryMosaic_imageContainer ActionMenu_hover" 
-                :class="{ 'is-active': image.selected }"
+                :class="{ 'is-active': selected.includes(image._id) }"
                 :style="{ '--width': image.width + 'px', '--height': image.height + 'px' }"
-                @click="$emit('select', image._id)"
+                @click="$emit('input', image._id)"
                 :key="image._id"
             >
                 <img class="GalleryMosaic_image" :width="Math.min(image.original.width * 0.8, image.width)" :height="Math.min(image.original.height * 0.8, image.height)" :src="image.src" />
 
-                <!-- <div class="GalleryMosaic_selector" v-if="selector">
+                <div class="GalleryMosaic_selector" v-if="selectable">
                     <i class="fal fa-check"></i>
                 </div>
-
-                <div class="GalleryMosaic_overlay" :class="{ 'is-active': state.active == image._id }">
-                    
-                </div> -->
             </div>
         </div>
     </div>
@@ -32,19 +28,17 @@ export default {
     props: {
         items: { type: Array, default: () => [] },
         height: { type: Number, default: 175 },
-        selector: { type: Boolean, default: false },
+        selected: { type: Array, default: () => [] },
+        selectable: { type: Boolean, default: false },
+        multiple: { type: Boolean, default: false }
     },
     data: () => ({
-        state: {
-            active: 1
-        },
         maxWidth: 0
     }),
     mounted () {
         this.$data.maxWidth = this.$el.offsetWidth
     },
     computed: {
-        selected () { return [] },
         imageRows () {
             let images = this.$props.items.slice()
             
@@ -67,7 +61,7 @@ export default {
 
                     currentRow.images.push({
                         ...current,
-                        collection: images[0],
+                        _id: images[0]._id,
                         original: current,
                         width: width,
                         height: this.$props.height

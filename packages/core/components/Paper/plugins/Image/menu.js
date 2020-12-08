@@ -5,9 +5,17 @@ export default function () {
         isNode: true,
         popin: {
             form: {
-                image: {
+                src: {
                     is: 'input-media',
-                    value: ''
+                    value: {},
+                    transformer: {
+                        get (v) {
+                            return v._id || ''
+                        },
+                        set (v) {
+                            return v.sizes.s.src || ''
+                        }
+                    }
                 }
             },
             attrs: {

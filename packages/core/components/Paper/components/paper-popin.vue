@@ -15,7 +15,8 @@
                         <component
                             :is="input.is ? input.is : 'input-base'"
                             v-bind="input"
-                            v-model="value[id]"
+                            :value="input.transformer && input.transformer.get ? input.transformer.get(value[id]) : value[id]"
+                            @input="(v) => value[id] = v"
                         />
                     </div>
                 </div>
@@ -82,7 +83,18 @@ export default {
             return values
         },
         onInput () {
-            this.$emit('input', this.$data.value)
+            let values = Object.keys(this.$props.form).reduce((prev, key) => {
+                let value = this.$data.value[key]
+                let form = this.$props.form[key]
+
+                return {
+                    ...prev,
+                    [key]: form.transformer && form.transformer.set ? form.transformer.set(value) : value
+                }
+            }, {})
+
+            this.$emit('input', values)
+
             this.$emit('close')
         }
     }

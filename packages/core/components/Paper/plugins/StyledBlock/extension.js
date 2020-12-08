@@ -15,7 +15,7 @@ export default class StyledBlock extends Node {
             },
             content: 'text*',
             group: 'block',
-            defining: false,
+            defining: true,
             draggable: false,
             parseDOM: [{
                 tag: ['p', 'h1', 'h2', 'h3'],

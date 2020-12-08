@@ -54,7 +54,7 @@ export default {
         classes: { type: String, defualt: '' },
         component: { type: [Object, Boolean], default: false },
         props: { type: [Object, Boolean], default: false },
-        value: { type: [String, Number, Array] }
+        value: { type: [String, Number, Array, Boolean] }
     },
     data: () => ({
         currentProps: {},

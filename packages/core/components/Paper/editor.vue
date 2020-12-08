@@ -50,7 +50,8 @@ export default {
     name: 'PaperEditor',
     components: { EditorView, EditorMenuBar, PaperButton, PaperSelect, PaperPopin },
     props: {
-        value: { type: String, default: 'Hello' }
+        value: { type: String, default: 'Hello' },
+        config: { type: Object, default: () => ({}) }
     },
     data: () => ({
         state: {
@@ -70,14 +71,13 @@ export default {
                 { id: 'undo', label: 'Annuler', icon: 'undo-alt' },
                 { id: 'redo', label: 'Rétablir', icon: 'redo-alt' }
             ], [  
-                Extensions.menu.styledBlock()
+                Extensions.menu.styledBlock(this.$props.config['styledBlock'] || undefined)
             ], [
                 { id: 'bold', label: 'Gras', icon: 'bold' },
                 { id: 'italic', label: 'Italique', icon: 'italic' },
             ], [
-                Extensions.menu.link(),
-                Extensions.menu.image(),
-                { id: 'blockquote', label: 'Citation', icon: 'quote-right' },
+                Extensions.menu.link(this.$props.config['link'] || undefined),
+                Extensions.menu.image(this.$props.config['styledBlock'] || undefined),
                 { id: 'bullet_list', label: 'Liste', icon: 'list-ul' },
                 { id: 'ordered_list', label: 'Liste numérotée', icon: 'list-ol' },
             ]
