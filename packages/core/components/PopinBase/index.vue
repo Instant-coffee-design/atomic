@@ -33,7 +33,8 @@ export default {
     name: 'PopinBase',
     mixins: [ ModifiersMixin ],
     props: {
-        isActive: { type: Boolean, default: false }
+        isActive: { type: Boolean, default: false },
+        autoClose: { type: Boolean, default: true }
     },
     data: () => ({
         listeners: {
@@ -43,6 +44,8 @@ export default {
     watch: {
         isActive: {
             handler (v) {
+                if (!this.autoClose) return 
+
                 if (v && this.$data.listeners.close) {
                     setTimeout(() => {
                         document.addEventListener('click', this.$data.listeners.close)

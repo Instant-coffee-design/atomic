@@ -51,7 +51,7 @@ export default {
     name: 'Sandbox',
     components: { ButtonBase, InputBase },
     props: {
-        classes: { type: String, defualt: '' },
+        classes: { type: String, default: '' },
         component: { type: [Object, Boolean], default: false },
         props: { type: [Object, Boolean], default: false },
         value: { type: [String, Number, Array, Boolean] }

@@ -1,6 +1,6 @@
 {
-  "name": "@instant-coffee/core",
-  "version": "1.2.5",
+  "name": "instant-coffee-core",
+  "version": "1.2.9",
   "description": "",
   "repository": "https://github.com/Instant-coffee-design/atomic/tree/main/packages/core",
   "main": "./dist/core.common.js",
@@ -22,7 +22,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.7.4",
     "@babel/plugin-transform-spread": "^7.7.4",
     "@babel/preset-env": "7.0.0-beta.44",
-    "@vue/cli-service": "^4.3.1",
+    "@vue/cli-service": "^4.5.15",
     "babel-minify-webpack-plugin": "^0.3.1",
     "vue-template-compiler": "^2.6.10"
   }

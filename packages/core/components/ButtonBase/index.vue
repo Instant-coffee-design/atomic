@@ -26,6 +26,10 @@
                 <i class="fal" :class="[`fa-${iconAfter}`]"></i>
             </span>
         </div>
+
+        <div class="ButtonBase_iconLoading">
+            <i class="fal" :class="[`fa-${iconLoading}`]"></i>
+        </div>
     </component>
 </template>
 
@@ -44,6 +48,7 @@ export default {
         node: { type: Object, default: () => {} },
         iconBefore: { type: String, default: '' },
         iconAfter: { type: String, default: '' },
+        iconLoading: { type: String, default: 'spinner-third' },
         attrs: { type: Object, default: () => ({}) }
     },
     computed: {

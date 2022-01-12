@@ -61,6 +61,16 @@
                     type: 'text'
                 }" v-model="input5" />
             </div>
+            
+            <div class="col-6">
+                <h3 class="Title Title--s mb-10">Reset w/o reveal</h3>
+                <sandbox :component="getProto('InputBase')" :props="{
+                    label: 'Password',
+                    helpers: ['reveal'],
+                    default: 'No shots',
+                    type: 'password'
+                }" v-model="input5" />
+            </div>
         </div>
 
         <h2 class="Title mb-30 mt-60">Select</h2>

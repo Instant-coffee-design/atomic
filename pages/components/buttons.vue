@@ -3,6 +3,8 @@
         <h1 class="Title Title--l mb-10">Button</h1>
 
         <sandbox :component="getProto('ButtonBase')" />
+
+        <sandbox :component="getProto('ButtonBase')" :classes="'is-loading'" />
     </div>
 </template>
 

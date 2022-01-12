@@ -25,7 +25,7 @@
             <input
                 class="InputBase_element"
                 :value="value"
-                :type="type"
+                :type="computedType"
                 v-bind="attrs"
                 @focus="state.isFocused = true"
                 @blur="state.isFocused = false"
@@ -48,6 +48,13 @@
                 v-if="helpers.includes('reset')"
             />
 
+            <helper-reveal
+                class="Inputbase_helper"
+                @click.native="reveal = !reveal"
+                :is-revealed="reveal"
+                v-if="helpers.includes('reveal')"
+            />
+
             <helper-errors
                 class="Inputbase_helper"
                 :errors="errors"
@@ -65,6 +72,7 @@ import SCHEMA from './schema'
 import HelperErrors from './components/HelperErrors'
 import HelperNumber from './components/HelperNumber'
 import HelperReset from './components/HelperReset'
+import HelperReveal from './components/HelperReveal'
 import { validateWithConstraints } from '../../helpers/InputValidators'
 import ModifiersMixin from '../../helpers/mixins/ModifiersMixin'
 
@@ -72,7 +80,7 @@ export default {
     name: 'InputBase',
     schema: SCHEMA,
     mixins: [ ModifiersMixin ],
-    components: { HelperErrors, HelperNumber, HelperReset },
+    components: { HelperErrors, HelperNumber, HelperReset, HelperReveal },
     props: {
         label: { type: String, default: '' },
         type: { type: String, default: 'text' },
@@ -88,6 +96,7 @@ export default {
             isValue: false,
             isValid: false
         },
+        reveal: false,
         errors: []
     }),
     computed: {
@@ -99,6 +108,9 @@ export default {
             if (this.$data.state.isFocused) classes['is-focused'] = true
             
             return classes
+        },
+        computedType () {
+            return this.reveal ? 'text' : this.type
         }
     },
     watch: {
