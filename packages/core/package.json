@@ -1,6 +1,6 @@
 {
   "name": "instant-coffee-core",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "description": "",
   "repository": "https://github.com/Instant-coffee-design/atomic/tree/main/packages/core",
   "main": "./dist/core.common.js",

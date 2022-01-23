@@ -60,7 +60,7 @@ export default {
     props: {
         label: { type: String, default: '' },
         options: { type: Array, default: () => [] },
-        value: { type: [Number, Array, Boolean] },
+        value: { type: [Number, Array, Boolean, String] },
         constraints: { type: Array, default: () => [] },
         placeholder: { type: String, default: '' },
         enableMultiple: { type: Boolean, default: false },

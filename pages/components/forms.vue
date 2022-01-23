@@ -125,8 +125,8 @@
             </div>
         </div>
 
-        <h2 class="Title mb-30 mt-60">UploadBase</h2>
-        <sandbox :component="getProto('UploadBase')" :props="{
+        <h2 class="Title mb-30 mt-60">InputUpload</h2>
+        <sandbox :component="getProto('InputUpload')" :props="{
     
         }" v-model="inputFiles" />
 
@@ -135,11 +135,11 @@
 </template>
 
 <script>
-import { InputBase, SelectBase, UploadBase, ToggleBase } from '@/packages/core/index.js'
+import { InputBase, SelectBase, InputUpload, ToggleBase } from '@/packages/core/index.js'
 
 export default {
     name: 'ComponentsButtons',
-    components: { InputBase, SelectBase, UploadBase, ToggleBase },
+    components: { InputBase, SelectBase, InputUpload, ToggleBase },
     data: () => ({
         input1: '',
         input2: 'With caramel',

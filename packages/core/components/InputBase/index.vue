@@ -33,7 +33,9 @@
             >
         </template>
 
-        <div class="Inputbase_helpers" v-if="helpers.length > 0 || Object.keys(constraints).length > 0">
+        <div class="Inputbase_helpers" v-if="helpers.length > 0 || Object.keys(constraints).length > 0 || suffix || $slots.default">
+            <slot></slot>
+            
             <helper-number
                 class="Inputbase_helper"
                 @increment="increment(1)"
@@ -54,6 +56,10 @@
                 :is-revealed="reveal"
                 v-if="helpers.includes('reveal')"
             />
+
+            <div class="Inputbase_helper" v-if="suffix">
+                {{ suffix }}
+            </div>
 
             <helper-errors
                 class="Inputbase_helper"
@@ -84,6 +90,7 @@ export default {
     props: {
         label: { type: String, default: '' },
         type: { type: String, default: 'text' },
+        suffix: { type: String, default: '' },
         value: { type: [String, Number, Boolean, Object, Array] },
         helpers: { type: Array, default: () => [] },
         constraints: { type: Object, default: () => ({}) },

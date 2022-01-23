@@ -30,14 +30,14 @@ export default {
         'nuxt-i18n'
     ],
 
-    i18n: {
-        locales: [
-            { code: 'fr', iso: 'fr-FR', file: 'fr.js' }
-        ],
-        langDir: '/translations/',
-        defaultLocale: 'fr',
-        lazy: true
-    },
+    // i18n: {
+    //     locales: [
+    //         { code: 'fr', iso: 'fr-FR', file: 'fr.js' }
+    //     ],
+    //     langDir: '/translations/',
+    //     defaultLocale: 'fr',
+    //     lazy: true
+    // },
 
     build: {
         extend (config) {
@@ -45,6 +45,19 @@ export default {
                 test: /\.svg.html$/,
                 loader: 'raw-loader'
             })
+        },
+        babel: {
+            presets(env, [preset, options]) {
+                return [["@babel/preset-env", {}]];
+            },
+            plugins: [
+                [
+                "@babel/plugin-transform-runtime",
+                {
+                    regenerator: true
+                }
+                ]
+            ]
         }
     }
 }

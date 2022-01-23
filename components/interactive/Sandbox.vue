@@ -44,8 +44,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { ButtonBase, InputBase } from '@/packages/core'
+import { ButtonBase, InputBase } from '@/packages/core/index.js'
 
 export default {
     name: 'Sandbox',
